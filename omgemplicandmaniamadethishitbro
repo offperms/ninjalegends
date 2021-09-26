@@ -1,0 +1,231 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Login = Instance.new("Frame")
+local user = Instance.new("TextBox")
+local pass = Instance.new("TextBox")
+local submit = Instance.new("TextButton")
+local Vibehugsruiner = Instance.new("TextLabel")
+
+--Properties:
+
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Login.Name = "Login"
+Login.Parent = ScreenGui
+Login.BackgroundColor3 = Color3.fromRGB(127, 55, 126)
+Login.Position = UDim2.new(0.354187697, 0, 0.205457449, 0)
+Login.Size = UDim2.new(0, 341, 0, 270)
+Login.Active = true
+Login.Draggable = true
+
+
+
+pass.Name = "pass"
+pass.Parent = Login
+pass.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+pass.BorderSizePixel = 4
+pass.Position = UDim2.new(0, 0, 0.492592603, 0)
+pass.Size = UDim2.new(0, 341, 0, 34)
+pass.Font = Enum.Font.Merriweather
+pass.Text = "Password.."
+pass.TextColor3 = Color3.fromRGB(0, 0, 0)
+pass.TextScaled = true
+pass.TextSize = 26.000
+pass.TextWrapped = true
+
+submit.Name = "submit"
+submit.Parent = Login
+submit.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+submit.BorderSizePixel = 2
+submit.Position = UDim2.new(0.0997067392, 0, 0.744444489, 0)
+submit.Size = UDim2.new(0, 272, 0, 50)
+submit.Font = Enum.Font.SourceSans
+submit.Text = "Submit."
+submit.TextColor3 = Color3.fromRGB(0, 0, 0)
+submit.TextScaled = true
+submit.TextSize = 14.000
+submit.TextWrapped = true
+submit.MouseButton1Down:connect(function()
+     if pass.Text == "omgemplicandmaniamadethishitbro" then
+         
+    Login.Visible = false
+    --- ! EMPLIC 9999 and mania#0617 made this shit
+-- more coming soon
+-- msg ! EMPLIC#9999 if u wanna be a tester
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Ninja Legends", "Ocean")
+
+-- MAIN
+local Main = Window:NewTab("Main")
+local MainSection = Main:NewSection("Main")
+-- TPS
+local Tps = Window:NewTab("Tps")
+local Tpsection = Tps:NewSection("Tps")
+-- CREDITS
+local Credits = Window:NewTab("Credits")
+local CreditsSection = Credits:NewSection("Credits:")
+
+MainSection:NewToggle("Auto Swing", "Make your player autoswing", function(v)
+    getgenv().autoswing = v
+    while true do
+        if not getgenv().autoswing then return end
+        for _,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+            if v:FindFirstChild("ninjitsuGain") then
+                game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+                break
+            end
+        end
+        local A_1 = "swingKatana"
+        local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+        Event:FireServer(A_1)
+        wait(0.1)
+    end
+end)
+
+
+MainSection:NewToggle("Auto buy all swords", "Auto buys all swords", function(v)
+    getgenv().buyswords = v
+    while true do
+        if not getgenv().buyswords then return end
+        local A_1 = "buyAllSwords"
+        local A_2 = "Inner Peace Island"
+        local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+        Event:FireServer(A_1, A_2)
+        wait(0.5)
+    end
+end)
+
+MainSection:NewToggle("Auto buy all belts", "Auto buys all belts", function(v)
+    getgenv().buybelts = v
+    while true do
+        if not getgenv().buybelts then return end
+        local A_1 = "buyAllBelts"
+        local A_2 = "Inner Peace Island"
+        local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+        Event:FireServer(A_1, A_2)
+        wait(0.5)
+    end
+end)
+
+MainSection:NewToggle("Auto Sell", "Makes your player autosell", function(v)
+    getgenv().autosell = v
+    while true do
+        if getgenv().autoswing == false then return end
+        game:GetService("Workspace").sellAreaCircles["sellAreaCircle16"].circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        wait(0.1)
+        game:GetService("Workspace").sellAreaCircles["sellAreaCircle16"].circleInner.CFrame = CFrame.new(0,0,0)
+        wait(0.1)
+    end
+end)
+
+MainSection:NewButton("Unlock all islands", "Credits to ! EMPLIC 9999", function()
+    local oldcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+    for _,v in pairs(game:GetService("Workspace").islandUnlockParts:GetChildren()) do
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+        wait(0.1)
+    end
+    wait(0.1)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldcframe
+end)
+
+
+MainSection:NewButton("Naked","No clothes for you",function()
+        for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+    		if v:IsA("Clothing") or v:IsA("ShirtGraphic") then
+    			v:Destroy()
+    		end
+    	end
+    end)
+
+MainSection:NewSlider("JumpPower", "Change your initial jump velocity.", 250, 50, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+end)
+
+MainSection:NewSlider("Walkspeed", "Change your movement magnitude.", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+MainSection:NewButton("Reset Character", "Reset your player character to the last location.", function()
+    local Character = LocalPlayer.Character
+    if Character then
+        local Humanoid: Humanoid = Character:FindFirstChildWhichIsA("Humanoid")
+        if Humanoid and Humanoid:GetState() ~= Enum.HumanoidStateType.Dead then
+            local LastCoordinateFrame = Humanoid.RootPart.CFrame
+            task.wait(Character:BreakJoints())
+            repeat
+                task.wait(0)
+            until LocalPlayer.Character and LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid") and LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):GetState() ~= Enum.HumanoidStateType.Dead
+            LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").RootPart.CFrame = LastCoordinateFrame
+            return
+        end
+    end
+end)
+
+
+
+MainSection:NewButton("Spam the Chat", "Spam the chat with a randomized capitalization quote.", function()
+    local DefaultChatSystemChatEvents: Folder = ReplicatedStorage:WaitForChild("DefaultChatSystemChatEvents", math.huge)
+    if DefaultChatSystemChatEvents and typeof(DefaultChatSystemChatEvents) == "Instance" and DefaultChatSystemChatEvents:IsA("Folder") then
+        local SayMessageRequest: RemoteEvent = DefaultChatSystemChatEvents:WaitForChild("SayMessageRequest", math.huge)
+        if SayMessageRequest and typeof(SayMessageRequest) == "Instance" and SayMessageRequest:IsA("RemoteEvent") then
+            for i = 1, 7, 1 do
+                SayMessageRequest:FireServer(RandomCapitalization("hello"), require(game:GetService("Chat").ClientChatModules.ChatSettings).GeneralChannelName)
+            end
+        end
+    end
+end)
+
+MainSection:NewButton("FE Emote GUI", "Loads up a FE Emote gui", function() if _G.emotegui then return end _G.emotegui = true return loadstring(game:HttpGet("https://pastebin.com/raw/DjsEQMxQ"))(); end)
+MainSection:NewButton("Infinite Yield FE", "Load Infinite Yield FE.", function() return loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))(); end)
+MainSection:NewButton("FE Nullware Hub", "Loads up the FE Nullware Hub.", function() if _G.nullwareloaded then return end _G.nullwareloaded = true loadstring(game:HttpGetAsync("https://gist.githubusercontent.com/M6HqVBcddw2qaN4s/dabc2500988785fbec1ce7c7aaee105d/raw/hVQJXfF4sR6yqSfJ"))() end)
+MainSection:NewButton("Invisible Script", "", function() return loadstring(game:HttpGet("https://gist.githubusercontent.com/skid123skidlol/cd0d2dce51b3f20ad1aac941da06a1a1/raw/bd62009d461c948d466222f4f9333f9420130fbb/%257BFE%257D%2520Invisible%2520Tool%2520(can%2520hold%2520tools)",true))(); end)
+
+
+
+-- CREDITS
+
+CreditsSection:NewLabel("Made by mania#0617 and ! EMPLIC#9999 :)")
+-- TPS
+Tpsection:NewButton("Teleport @ Safe Zone", "tp", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(11,3,35)
+end)
+
+Tpsection:NewButton("Teleport @ Shop", "tp", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(103,3,28)
+    end)
+
+    Tpsection:NewButton("Teleport @ Light skills shop ", "tp", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-116.49514, 3.24800324, 0.0838552266)
+    end)    
+
+    Tpsection:NewButton("Teleport @ Dark skills shop ", "tp", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-116.549767, 3.24800324, 58.087841)
+    end)    
+    Tpsection:NewButton("Teleport @ KOTH ", "tp", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").kingOfTheHillPart.CFrame
+
+    end)    
+
+
+    
+
+
+end
+	end)
+
+Vibehugsruiner.Name = "Key"
+Vibehugsruiner.Parent = Login
+Vibehugsruiner.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Vibehugsruiner.BackgroundTransparency = 1.000
+Vibehugsruiner.Position = UDim2.new(0, 0, 0.203703701, 0)
+Vibehugsruiner.Size = UDim2.new(0, 225, 0, 43)
+Vibehugsruiner.Font = Enum.Font.SourceSans
+Vibehugsruiner.Text = "Whitelist."
+Vibehugsruiner.TextColor3 = Color3.fromRGB(0, 0, 0)
+Vibehugsruiner.TextSize = 24.000
+Vibehugsruiner.TextWrapped = true
